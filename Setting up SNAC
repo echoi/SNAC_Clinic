@@ -21,3 +21,8 @@
 > cd Snac/examples/Cookbook1
 > Snac ./cookbook1.xml
 > qsub run_cookbook1
+
+4. References
+
+4.1 Torque system
+http://csdms.colorado.edu/wiki/Help:HPCC_Torque#Check_Queue_and_Job_Status
