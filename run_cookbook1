@@ -1,0 +1,25 @@
+#!/bin/sh
+#PBS -q normal                   # The queue to submit to
+#PBS -N cookbook1               # The name of the job
+#PBS -o %N.out             # The file to print the output to
+#PBS -e %N.err             # The file to print the error to
+# Mail Directives
+##PBS -m abe                     # The points durring the execution to send an email
+##PBS -M me@colorado.edu         # Who to Mail to
+ 
+#PBS -l walltime=01:00:00       # Specify the walltime
+##PBS -l pmem=100mb              # Memory Allocation for the Job
+#PBS -l nodes=1:ppn=4           # Number of nodes and the number processors per node 
+ 
+ 
+NCPU=`wc -l < $PBS_NODEFILE`
+NNODES=`uniq $PBS_NODEFILE | wc -l`
+MPIPREFIX=/usr/local/mvapich2-1.9rc1-intel11
+MPIRUN=$MPIPREFIX/bin/mpirun_rsh
+ 
+echo "Running on nodes " `uniq $PBS_NODEFILE`
+echo "Number of available cpus " $NCPU
+echo "Number of available nodes " $NNODES
+echo "Launch command " $CMD
+ 
+$MPIRUN -np $NCPU -hostfile $PBS_NODEFILE ~/opt/snac/build/bin/SNAC ./cookbook1.xml 
