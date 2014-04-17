@@ -1,0 +1,23 @@
+1. Clone SNAC to a desired location (e.g., ~/opt):
+
+> cd
+> cd opt
+> git clone --recursive https://github.com/geodynamics/snac.git
+
+2. Configure and build
+
+> module load mvapich2/1.9-intel
+> export CC=mpicc
+> export CXX=mpicxx
+> export MPI_LIBDIR=${MPI_DIR}/lib
+> export MPI_INCDIR=${MPI_DIR}/include
+>
+> cd snac
+> ./configure
+> make
+
+3. Test
+
+> cd Snac/examples/Cookbook1
+> Snac ./cookbook1.xml
+> qsub run_cookbook1
