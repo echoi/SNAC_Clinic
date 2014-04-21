@@ -1,24 +1,27 @@
 #!/bin/sh
-##PBS -q normal
+##PBS -q default
 #PBS -N cookbook1
-#PBS -o %N.out
-#PBS -e %N.err
+#PBS -o output.txt
+#PBS -e error.txt
 # Mail Directives
 ##PBS -m abe
-##PBS -M me@colorado.edu
- 
+##PBS -M echoi2@memphis.edu
+
 #PBS -l walltime=01:00:00
 ##PBS -l pmem=100mb
 #PBS -l nodes=1:ppn=4
- 
- 
+
 NCPU=`wc -l < $PBS_NODEFILE`
 NNODES=`uniq $PBS_NODEFILE | wc -l`
-MPIPREFIX=/usr/local/mvapich2-1.9rc1-intel11
-MPIRUN=$MPIPREFIX/bin/mpirun_rsh
- 
-echo "Running on nodes " `uniq $PBS_NODEFILE`
-echo "Number of available cpus " $NCPU
-echo "Number of available nodes " $NNODES
- 
-$MPIRUN -np $NCPU -hostfile $PBS_NODEFILE ~/opt/snac/build/bin/Snac ./cookbook1.xml 
+
+MPIRUN=/usr/local/openmpi-1.6.5-intel/bin/mpirun
+
+CMD="$MPIRUN -n $NCPU /home/euch0601/opt/snac/build/bin/Snac /home/euch0601/opt/snac/Snac/examples/Cookbook1/cookbook1.xml"
+
+echo "--> Running on nodes " `uniq $PBS_NODEFILE`
+echo "--> Number of available cpus " $NCPU
+echo "--> Number of available nodes " $NNODES
+echo "--> Launch command is " $CMD
+
+export LD_LIBRARY_PATH=/usr/local/openmpi-1.6.5-intel/lib:/usr/local/intel/lib/intel64:${LD_LIBRARY_PATH}
+$CMD
