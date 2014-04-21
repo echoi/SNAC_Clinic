@@ -6,12 +6,25 @@
 
 2. Configure and build
 
-> module load mvapich2/1.9-intel
+2.1 Environment setup
+
+> module load openmpi/1.6.5-intel
 > export CC=mpicc
 > export CXX=mpicxx
+> export MPI_DIR=/usr/local/openmpi-1.6.5-intel
 > export MPI_LIBDIR=${MPI_DIR}/lib
 > export MPI_INCDIR=${MPI_DIR}/include
->
+
+or create ~/.tools and put the above lines in it.
+Then add the following to ~/.bashrc:
+
+# Set up porject-dependent pacakges.
+if [ -f ~/.tools ]; then
+    . ~/.tools
+fi
+
+2.2 Build Snac
+
 > cd snac
 > ./configure
 > make
