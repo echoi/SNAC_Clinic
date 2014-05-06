@@ -47,6 +47,9 @@ or add the above lines to ~/.tools and source it.
 > Snac ./cookbook1.xml
 > qsub run_cookbook1
 
+*Note that run_cookbook1 must be a part of SNAC_Clinic you cloned.
+
+
 4. References
 
 4.1 Torque system
