@@ -29,6 +29,18 @@ fi
 > ./configure
 > make
 
+2.3 Environment setup 
+> export SNAC_DIR=${HOME}/opt/snac.git/build
+> export SNAC_BINDIR=${SNAC_DIR}/bin
+> export SNAC_INCDIR=${SNAC_DIR}/include
+> export SNAC_LIBDIR=${SNAC_DIR}/lib
+> export SNAC_MODDIR=${SNAC_DIR}/Python
+> export PATH=${SNAC_BINDIR}:${PATH}
+> export DYLD_LIBRARY_PATH=$SNAC_LIBDIR:${DYLD_LIBRARY_PATH}
+> export PYTHONPATH=${SNAC_MODDIR}:${PYTHONPATH}
+
+or add the above lines to ~/.tools and source it.
+
 3. Test
 
 > cd Snac/examples/Cookbook1
