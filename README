@@ -6,18 +6,51 @@
 
 2. Configure and build
 
-> module load mvapich2/1.9-intel
+2.1 Environment setup
+
+> module load openmpi/1.6.5-intel
 > export CC=mpicc
 > export CXX=mpicxx
+> export MPI_DIR=/usr/local/openmpi-1.6.5-intel
 > export MPI_LIBDIR=${MPI_DIR}/lib
 > export MPI_INCDIR=${MPI_DIR}/include
->
+
+or create ~/.tools and put the above lines in it.
+Then add the following to ~/.bashrc:
+
+# Set up porject-dependent pacakges.
+if [ -f ~/.tools ]; then
+    . ~/.tools
+fi
+
+2.2 Build Snac
+
 > cd snac
 > ./configure
 > make
+
+2.3 Environment setup 
+> export SNAC_DIR=${HOME}/opt/snac.git/build
+> export SNAC_BINDIR=${SNAC_DIR}/bin
+> export SNAC_INCDIR=${SNAC_DIR}/include
+> export SNAC_LIBDIR=${SNAC_DIR}/lib
+> export SNAC_MODDIR=${SNAC_DIR}/Python
+> export PATH=${SNAC_BINDIR}:${PATH}
+> export DYLD_LIBRARY_PATH=$SNAC_LIBDIR:${DYLD_LIBRARY_PATH}
+> export PYTHONPATH=${SNAC_MODDIR}:${PYTHONPATH}
+
+or add the above lines to ~/.tools and source it.
 
 3. Test
 
 > cd Snac/examples/Cookbook1
 > Snac ./cookbook1.xml
 > qsub run_cookbook1
+
+*Note that run_cookbook1 must be a part of SNAC_Clinic you cloned.
+
+
+4. References
+
+4.1 Torque system
+http://csdms.colorado.edu/wiki/Help:HPCC_Torque#Check_Queue_and_Job_Status
