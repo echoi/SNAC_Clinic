@@ -8,10 +8,10 @@
 
 2.1 Environment setup
 
-> module load openmpi/1.6.5-intel
+> module load mvapich2/1.7
 > export CC=mpicc
 > export CXX=mpicxx
-> export MPI_DIR=/usr/local/openmpi-1.6.5-intel
+> export MPI_DIR=/usr/mpi/gcc/mvapich2-1.7
 > export MPI_LIBDIR=${MPI_DIR}/lib
 > export MPI_INCDIR=${MPI_DIR}/include
 
