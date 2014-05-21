@@ -1,7 +1,7 @@
 1. Clone SNAC to a desired location (e.g., ~/opt):
 
 > cd
-> cd opt
+> cd opt (or any suitable directory)
 > git clone --recursive https://github.com/geodynamics/snac.git
 
 2. Configure and build
@@ -25,7 +25,7 @@ fi
 
 2.2 Build Snac
 
-> cd snac
+> cd ~/opt/snac
 > ./configure
 > make
 
@@ -45,12 +45,19 @@ or add the above lines to ~/.tools and source it.
 
 > cd Snac/examples/Cookbook1
 > Snac ./cookbook1.xml
+
+or preferably,
+
+> cd ~/SNAC_Clinic
 > qsub run_cookbook1
 
-*Note that run_cookbook1 must be a part of SNAC_Clinic you cloned.
+*run_cookbook1 is a part of SNAC_Clinic you cloned.
 
 
 4. References
 
-4.1 Torque system
+4.1 SNAC manual
+A SNAC user manual as well as two papers providing (as an appendix) the details of SNAC's background theory are in SNAC_Clinic/References.
+
+4.2 Torque: Job scheduling system on beach
 http://csdms.colorado.edu/wiki/Help:HPCC_Torque#Check_Queue_and_Job_Status
